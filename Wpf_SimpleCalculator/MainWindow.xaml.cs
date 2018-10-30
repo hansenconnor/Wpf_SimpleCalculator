@@ -24,5 +24,26 @@ namespace Wpf_SimpleCalculator
         {
             InitializeComponent();
         }
+
+        /// <summary>
+        /// Retrieve user search query from text box and GET possible artists from API
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void getArtists(object sender, RoutedEventArgs e)
+        {
+            // Get the search query
+            var searchQuery = searchBox.Text;
+
+            // Handle empty search query
+            if (searchQuery == "")
+            {
+                // Empty query => return
+                return;
+            }
+
+            // Create new GET request
+
+        }
     }
 }
