@@ -1,40 +1,40 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using Wpf_SimpleCalculator.Models;
+using Newtonsoft.Json.Linq;
 
 namespace Wpf_SimpleCalculator.DAL
 {
     public class JSONDataService : IDataService
     {
         // Return dynamic search object
-        public string getDynamicQueryResult( string searchQuery, ItemType type, int limit )
+        public dynamic getDynamicQueryResult( string searchQuery, ItemType type, int limit )
         {
-            string requestUrl = string.Format("https://");
+            // TODO: Validate query before setting to requestUrl
+            string requestUrl = string.Format("https://api.spotify.com/v1/search?q={searchQuery}&type={type}&limit={limit}", searchQuery, type, limit);
 
-            string requestUrl = string.Format("http://spatial.virtualearth.net/REST/v1/data/{0}/{1}/{2}" +
-        "?spatialFilter=nearby({3},{4},{5})&key={6}", accessId, dataSourceName,
-        dataEntityName, SearchLatitude, SearchLongitude, Radius, bingMapsKey);
-            // Send the request and get back an XML response.
-            XmlDocument response = GetXmlResponse(requestUrl);
-            // Display each entity's info.
-            ProcessEntityElements(response);
+            JObject response = GetJsonResponse(requestUrl);
+
+            return response;
         }
 
 
-        public static XmlDocument GetXmlResponse(string requestUrl)
+        public static JObject GetJsonResponse(string requestUrl)
         {
             try
             {
-                HttpWebRequest request = WebRequest.Create(requestUrl) as HttpWebRequest;
-                HttpWebResponse response = request.GetResponse() as HttpWebResponse;
+                using (WebClient wc = new WebClient())
+                {
+                    var json = wc.DownloadString(requestUrl);
+                    JObject deserializedResponse = JObject.Parse(json);
 
-                XmlDocument xmlDoc = new XmlDocument();
-                xmlDoc.Load(response.GetResponseStream());
-                return (xmlDoc);
-
+                    return deserializedResponse;
+                }
+                // dynamic product = new JObject();
             }
             catch (Exception e)
             {

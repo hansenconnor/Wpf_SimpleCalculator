@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Wpf_SimpleCalculator.DAL;
+using Wpf_SimpleCalculator.Models;
+using Wpf_SimpleCalculator.BLL;
 
 namespace Wpf_SimpleCalculator
 {
@@ -35,13 +38,32 @@ namespace Wpf_SimpleCalculator
             // Get the search query
             var searchQuery = searchBox.Text;
 
+            // Statically set type => could let user specify in future versions
+            ItemType type = ItemType.artist;
+
+            // Statically set limit => could let user specify in future versions
+            int limit = 10;
+
+
+            // Define our data service
+            JSONDataService JSONDataService = new JSONDataService();
+
+            // Create a new Artist BLL and pass our DataService
+            ArtistsBLL artistBLL = new ArtistsBLL(JSONDataService);
+
+
+            // Get the artists
+            
+
+
             // Handle empty search query
             if (searchQuery == "")
             {
                 // Empty query => return
                 return;
             }
-
+            JSONDataService _jsonDataService = new JSONDataService();
+            dynamic test = _jsonDataService.getDynamicQueryResult();
             // Create new GET request
 
         }
