@@ -14,8 +14,11 @@ namespace Wpf_SimpleCalculator.DAL
         // Return dynamic search object
         public dynamic getDynamicQueryResult( string searchQuery, ItemType type, int limit )
         {
-            // TODO: Validate query before setting to requestUrl
-            string requestUrl = string.Format("https://api.spotify.com/v1/search?q={searchQuery}&type={type}&limit={limit}", searchQuery, type, limit);
+            string _type = type.ToString();
+            string _limit = limit.ToString();
+
+                // TODO: Validate query before setting to requestUrl
+                string requestUrl = string.Format("https://api.spotify.com/v1/search?q={0}&type={1}&limit={2}", searchQuery, _type, _limit);
 
             JObject response = GetJsonResponse(requestUrl);
 
@@ -29,6 +32,7 @@ namespace Wpf_SimpleCalculator.DAL
             {
                 using (WebClient wc = new WebClient())
                 {
+                    wc.Headers.Add("Authorization", "Bearer BQDqW6XTOcOpF1zNjcCDHVhXT7eCmuVMtO3ziGi3nWxFHrkmLs2Yehxk_7PkfqvqYDtUDZX4kC7x-gJxsfk");
                     var json = wc.DownloadString(requestUrl);
                     JObject deserializedResponse = JObject.Parse(json);
 

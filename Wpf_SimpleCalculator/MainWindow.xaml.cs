@@ -44,27 +44,17 @@ namespace Wpf_SimpleCalculator
             // Statically set limit => could let user specify in future versions
             int limit = 10;
 
-
             // Define our data service
-            JSONDataService JSONDataService = new JSONDataService();
-
-            // Create a new Artist BLL and pass our DataService
-            ArtistsBLL artistBLL = new ArtistsBLL(JSONDataService);
-
-
-            // Get the artists
+            JSONDataService jsonDataService = new JSONDataService();
             
+            // Create a new Artist BLL and pass our DataService
+            ArtistsBLL artistBLL = new ArtistsBLL(jsonDataService);
 
 
-            // Handle empty search query
-            if (searchQuery == "")
-            {
-                // Empty query => return
-                return;
-            }
-            JSONDataService _jsonDataService = new JSONDataService();
-            dynamic test = _jsonDataService.getDynamicQueryResult();
-            // Create new GET request
+            // TODO: Fix
+            //Additional information: Cannot implicitly convert type 'Newtonsoft.Json.Linq.JObject' to 'System.Collections.Generic.List<Wpf_SimpleCalculator.Models.Artist>'
+            //
+            List<Artist> artists = jsonDataService.getDynamicQueryResult( searchQuery, type, limit );
 
         }
     }
