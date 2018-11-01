@@ -35,6 +35,7 @@ namespace Wpf_SimpleCalculator.BLL
             // Get the artists from the query
             JObject responseObject = _dataService.getDynamicQueryResult(searchQuery, type, limit);
 
+            // TODO: Null check or prevent empty input from search
             string artistName = (string)responseObject["artists"]["items"][0]["name"];
             string artistId = (string)responseObject["artists"]["items"][0]["id"];
 
