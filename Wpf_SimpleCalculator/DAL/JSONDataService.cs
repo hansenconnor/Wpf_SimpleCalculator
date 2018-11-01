@@ -32,7 +32,7 @@ namespace Wpf_SimpleCalculator.DAL
             {
                 using (WebClient wc = new WebClient())
                 {
-                    wc.Headers.Add("Authorization", "Bearer BQDqW6XTOcOpF1zNjcCDHVhXT7eCmuVMtO3ziGi3nWxFHrkmLs2Yehxk_7PkfqvqYDtUDZX4kC7x-gJxsfk");
+                    wc.Headers.Add("Authorization", "Bearer BQATgAJ69X9bGyxKbX7Y42ssPlHlQ6vWVSYfkBp_LqPp7ZscY6PHr2oz3XZgd8FfnpxO3bzemsc2Nu6PNxg");
                     var json = wc.DownloadString(requestUrl);
                     JObject deserializedResponse = JObject.Parse(json);
 

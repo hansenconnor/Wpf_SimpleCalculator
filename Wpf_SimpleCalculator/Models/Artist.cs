@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Wpf_SimpleCalculator.Models
 {
-    class Artist
+    public class Artist
     {
-        string name { get; set; }
-        int id { get; set; }
+        public string name { get; set; }
+        public string id { get; set; }
     }
 }

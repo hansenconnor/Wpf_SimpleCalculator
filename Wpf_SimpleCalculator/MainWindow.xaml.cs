@@ -54,7 +54,7 @@ namespace Wpf_SimpleCalculator
             // TODO: Fix
             //Additional information: Cannot implicitly convert type 'Newtonsoft.Json.Linq.JObject' to 'System.Collections.Generic.List<Wpf_SimpleCalculator.Models.Artist>'
             //
-            List<Artist> artists = jsonDataService.getDynamicQueryResult( searchQuery, type, limit );
+            List<Artist> artists = artistBLL.getArtists( searchQuery, type, limit );
 
         }
     }
