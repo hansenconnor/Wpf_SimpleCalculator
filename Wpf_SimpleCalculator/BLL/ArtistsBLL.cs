@@ -27,6 +27,7 @@ namespace Wpf_SimpleCalculator.BLL
         /// <param name="limit"></param>
         /// <returns>List of artists</returns>
         public List<Artist> GetArtists( string searchQuery, ItemType type, int limit )
+
         {
             // Instantiate list to hold artists
             List<Artist> artists = new List<Artist>();

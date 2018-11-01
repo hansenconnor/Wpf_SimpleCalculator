@@ -13,6 +13,18 @@
         TextOptions.TextRenderingMode="Auto"
         FontFamily="{DynamicResource MaterialDesignFont}"
         Title="Calculator Window" Height="579.482" Width="1033.586">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
     <Window.Background>
         <LinearGradientBrush EndPoint="516.793,579.482" StartPoint="516.793,0" MappingMode="Absolute">
             <LinearGradientBrush.RelativeTransform>
@@ -28,8 +40,9 @@
         </LinearGradientBrush>
     </Window.Background>
     <Grid>
-        <TextBox x:Name="searchBox" HorizontalAlignment="Left" Height="22" Margin="348,144,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Cursor="IBeam" BorderBrush="#89FFFFFF"/>
-        <Button x:Name="searchButton" Content="Search" HorizontalAlignment="Left" Margin="473,144,0,0" VerticalAlignment="Top" Width="74" BorderBrush="White" Foreground="#DDFFFFFF" Height="22" Click="getArtists" BorderThickness="1" Background="{x:Null}"/>
+        <TextBox x:Name="searchBox" HorizontalAlignment="Left" Height="22" Margin="287,144,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="181" Cursor="IBeam" BorderBrush="#89FFFFFF"/>
+        <Button x:Name="searchButton" Content="Search" HorizontalAlignment="Left" Margin="494,140,0,0" VerticalAlignment="Top" Width="74" BorderBrush="White" Foreground="#DDFFFFFF" Height="30" Click="getArtists" BorderThickness="1" Background="{x:Null}" Style="{DynamicResource MaterialDesignFlatButton}">
+        </Button>
         <Label Content="BeatFinder" HorizontalAlignment="Left" Margin="60,240,0,241" FontFamily="Agency FB" FontSize="48" Foreground="White"/>
     </Grid>
 </Window>
