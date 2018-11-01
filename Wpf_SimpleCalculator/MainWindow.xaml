@@ -29,7 +29,7 @@
     </Window.Background>
     <Grid>
         <TextBox x:Name="searchBox" HorizontalAlignment="Left" Height="22" Margin="348,144,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Cursor="IBeam" BorderBrush="#89FFFFFF"/>
-        <Button x:Name="searchButton" Content="Search" HorizontalAlignment="Left" Margin="486,144,0,0" VerticalAlignment="Top" Width="74" Background="White" BorderBrush="White" Foreground="#DD5F5F5F" Height="22" Click="getArtists"/>
+        <Button x:Name="searchButton" Content="Search" HorizontalAlignment="Left" Margin="473,144,0,0" VerticalAlignment="Top" Width="74" BorderBrush="White" Foreground="#DDFFFFFF" Height="22" Click="getArtists" BorderThickness="1" Background="{x:Null}"/>
         <Label Content="BeatFinder" HorizontalAlignment="Left" Margin="60,240,0,241" FontFamily="Agency FB" FontSize="48" Foreground="White"/>
     </Grid>
 </Window>
