@@ -19,8 +19,14 @@ namespace Wpf_SimpleCalculator.BLL
             _dataService = dataService;
         }
 
-
-        public List<Artist> getArtists( string searchQuery, ItemType type, int limit )
+        /// <summary>
+        /// Return a list of artists from user search query
+        /// </summary>
+        /// <param name="searchQuery"></param>
+        /// <param name="type"></param>
+        /// <param name="limit"></param>
+        /// <returns>List of artists</returns>
+        public List<Artist> GetArtists( string searchQuery, ItemType type, int limit )
         {
             // Instantiate list to hold artists
             List<Artist> artists = new List<Artist>();
@@ -38,29 +44,11 @@ namespace Wpf_SimpleCalculator.BLL
                 name = artistName
             };
 
-            // TODO: Foreach artist in response (5 max) create new artist and push to array, then display as selectable dropdown under search.
+            artists.Add(artist);
 
-            Console.WriteLine();
-            //JArray categories = (JArray)responseObject["artists"]["items"][0]["name"];
-            // ["Json.NET", "CodePlex"]
-
-            //IList<string> categoriesText = categories.Select(c => (string)c).ToList();
-
-
-
-
-
-
-            // Iterate through the response object and push items to artist list
-            //foreach (var artist in responseObject)
-            //{
-            //    var id = responseObject["report"]["Id"].ToString();
-            //    int id = artist.Key
-            //    artists.Add(new Artist());
-            //}
-            
-            // Return list of artists
             return artists;
+
+            // TODO: Foreach artist in response (5 max) create new artist and push to array, then display as selectable dropdown under search.
         }
     }
 }

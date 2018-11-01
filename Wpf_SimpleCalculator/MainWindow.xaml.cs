@@ -49,12 +49,11 @@ namespace Wpf_SimpleCalculator
             
             // Create a new Artist BLL and pass our DataService
             ArtistsBLL artistBLL = new ArtistsBLL(jsonDataService);
+            
+            // Get a list of artists from the search query input
+            List<Artist> artists = artistBLL.GetArtists( searchQuery, type, limit );
 
-
-            // TODO: Fix
-            //Additional information: Cannot implicitly convert type 'Newtonsoft.Json.Linq.JObject' to 'System.Collections.Generic.List<Wpf_SimpleCalculator.Models.Artist>'
-            //
-            List<Artist> artists = artistBLL.getArtists( searchQuery, type, limit );
+            // Append the results to the search bar
 
         }
     }
