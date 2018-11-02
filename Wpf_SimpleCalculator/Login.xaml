@@ -19,13 +19,16 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="101*"/>
         </Grid.ColumnDefinitions>
-        <Image x:Name="image" UseLayoutRounding="False" Source="Images/logo.png" Stretch="Fill" SnapsToDevicePixels="True" Margin="0" Grid.Column="1" Height="172" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Width="151.778">
-            <Image.Effect>
-                <DropShadowEffect Opacity="0.325" RenderingBias="Quality" BlurRadius="35"/>
-            </Image.Effect>
-        </Image>
-        <Label x:Name="label" Content="BeatFinder" FontFamily="Segoe UI Light" FontSize="36" SnapsToDevicePixels="True" VerticalContentAlignment="Center" Grid.Column="1" HorizontalContentAlignment="Center" Grid.Row="2" HorizontalAlignment="Center" Width="668"/>
-        <Button x:Name="button" Content="Button" Grid.Column="1" Margin="108,42" Grid.Row="3"/>
+        <StackPanel Grid.Column="1" Orientation="Horizontal" Grid.Row="1">
+            <Image x:Name="image" UseLayoutRounding="False" Source="Images/logo.png" Stretch="Fill" VerticalAlignment="Center" Height="99.2" Width="87.53" HorizontalAlignment="Center">
+                <Image.Effect>
+                    <DropShadowEffect Opacity="0.35" ShadowDepth="2" BlurRadius="15"/>
+                </Image.Effect>
+            </Image>
+            <Label x:Name="label" Content="BeatFinder" FontFamily="Segoe UI Light" FontSize="36" SnapsToDevicePixels="True" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="30,32,0,43"/>
+        </StackPanel>
+        <Button x:Name="button" Content="Button" Grid.Column="1" Grid.Row="3" Style="{StaticResource MaterialDesignRaisedAccentButton}" Height="Auto" Margin="62" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" Width="164" Foreground="#DDFFFFFF"/>
+        <Label x:Name="label1" Content="So much music and so little time. Are you ready?" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="2" VerticalAlignment="Top" Width="1223" Height="89" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24" Grid.ColumnSpan="3"/>
 
     </Grid>
 </Window>
