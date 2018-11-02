@@ -1,0 +1,31 @@
+﻿<Window x:Class="Wpf_SimpleCalculator.Login"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Wpf_SimpleCalculator"
+        mc:Ignorable="d"
+        Title="Login" Height="788.5" Width="1251.005">
+    <Grid Background="#CDFFFFFF">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="92*"/>
+            <RowDefinition Height="255*"/>
+            <RowDefinition Height="109*"/>
+            <RowDefinition Height="152*"/>
+            <RowDefinition Height="149*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="103*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="101*"/>
+        </Grid.ColumnDefinitions>
+        <Image x:Name="image" UseLayoutRounding="False" Source="Images/logo.png" Stretch="Fill" SnapsToDevicePixels="True" Margin="0" Grid.Column="1" Height="172" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Width="151.778">
+            <Image.Effect>
+                <DropShadowEffect Opacity="0.325" RenderingBias="Quality" BlurRadius="35"/>
+            </Image.Effect>
+        </Image>
+        <Label x:Name="label" Content="BeatFinder" FontFamily="Segoe UI Light" FontSize="36" SnapsToDevicePixels="True" VerticalContentAlignment="Center" Grid.Column="1" HorizontalContentAlignment="Center" Grid.Row="2" HorizontalAlignment="Center" Width="668"/>
+        <Button x:Name="button" Content="Button" Grid.Column="1" Margin="108,42" Grid.Row="3"/>
+
+    </Grid>
+</Window>
