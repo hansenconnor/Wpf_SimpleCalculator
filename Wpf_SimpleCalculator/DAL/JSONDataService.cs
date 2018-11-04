@@ -8,6 +8,9 @@ using Wpf_SimpleCalculator.Models;
 using Newtonsoft.Json.Linq;
 using System.Collections.Specialized;
 using System.IO;
+using Newtonsoft.Json;
+using System.Configuration;
+using System.Collections.Specialized;
 
 namespace Wpf_SimpleCalculator.DAL
 {
@@ -30,87 +33,40 @@ namespace Wpf_SimpleCalculator.DAL
 
         public string getAccessToken()
         {
-            JObject responseObject;
+            
+            
             string requestUrl = "https://accounts.spotify.com/api/token";
 
-
-            try
+            using (WebClient wc = new WebClient())
             {
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(requestUrl);
-                var postData = "grant_type=client_credentials";
-                byte[] data = Encoding.ASCII.GetBytes(postData);
-                request.ContentType = "application/x-www-form-urlencoded";
-                request.Headers.Add("Authorization", "Basic YWE0ZjZiZDIyYjc3NGFiMzk2ODI1NzQ5NzNjYjIyNWY6MzhiODYwMDhmOGJkNDhkNDkzYjMzZDI1NTA0NmQzNzk=");
-                request.Method = "POST";
-                request.ContentLength = data.Length;
-                //using (var stream = request.GetRequestStream())
-                //{
-                //    stream.Write(data, 0, data.Length);
-                //}
-
-                var stream = request.GetRequestStream();
-                stream.Write(data, 0, data.Length);
-                stream.Close();
-                WebResponse response = (HttpWebResponse)request.GetResponse();
-
-                Stream responseData = response.GetResponseStream();
-
-                Console.WriteLine(responseData);
-                response.Close();
-                var responseStream = response.GetResponseStream();
-
-                var mapImage = response.GetResponseStream();
-                // data here is optional, in case we recieve any string data back from the POST request.
-                var responseString = UnicodeEncoding.UTF8.GetString(data);
-                Console.WriteLine(responseString);
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-
-            try
-            {
-                NameValueCollection postData = new NameValueCollection()
-               {
-                      { "Authorization", "Basic YWE0ZjZiZDIyYjc3NGFiMzk2ODI1NzQ5NzNjYjIyNWY6MzhiODYwMDhmOGJkNDhkNDkzYjMzZDI1NTA0NmQzNzk=" },  //order: {"parameter name", "parameter value"}
-                      { "Content-type", "application/x-www-form-urlencoded" }
-               };
-                using (WebClient wc = new WebClient())
+                JObject responseObject;
+                string accessToken = "";
+                wc.Proxy = null;
+                wc.Headers.Add("Authorization",
+                    "Basic " + Convert.ToBase64String(Encoding.UTF8.GetBytes("aa4f6bd22b774ab39682574973cb225f" + ":" + "38b86008f8bd48d493b33d255046d379")));
+                NameValueCollection col = new NameValueCollection
                 {
-                    wc.QueryString.Add("grant_type", "client_credentials");
-                    wc.Headers.Add("Authorization", "Basic YWE0ZjZiZDIyYjc3NGFiMzk2ODI1NzQ5NzNjYjIyNWY6MzhiODYwMDhmOGJkNDhkNDkzYjMzZDI1NTA0NmQzNzk=");
-                    wc.Headers.Add("Content-type", "application/x-www-form-urlencoded");
-                   
-                    // client.UploadValues returns page's source as byte array (byte[])
-                    // so it must be transformed into a string
-                    // var response = UnicodeEncoding.UTF8.GetString(wc.UploadValues(requestUrl, "POST", wc));
+                    {"grant_type", "client_credentials"},
+                };
 
-                    //JObject deserializedResponse = JObject.Parse(response);
-
-                    //responseObject = deserializedResponse;
+                String response;
+                try
+                {
+                    byte[] data = wc.UploadValues("https://accounts.spotify.com/api/token", "POST", col);
+                    response = Encoding.UTF8.GetString(data);
                 }
+                catch (WebException e)
+                {
+                    using (StreamReader reader = new StreamReader(e.Response.GetResponseStream()))
+                    {
+                        response = reader.ReadToEnd();
+                    }
+                }
+                responseObject = JsonConvert.DeserializeObject<JObject>(response);
+                accessToken = responseObject["access_token"].ToString();
+
+                return accessToken;
             }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-
-                Console.Read();
-                return null;
-            }
-
-            // Retrieve the token and return
-            //string accessToken = (string)responseObject["acces_token"];
-
-
-            //Artist artist = new Artist
-            //{
-            //    id = artistId,
-            //    name = artistName
-            //};
-        Console.WriteLine();
-            return "test";
         }
 
 
@@ -120,8 +76,11 @@ namespace Wpf_SimpleCalculator.DAL
             {
                 using (WebClient wc = new WebClient())
                 {
+                    string accessToken = ConfigurationManager.AppSettings.Get("ACCESS_TOKEN");
+                    // TODO: Makeu sure key value is not NULL
+                    //To display the value that the application retrieves in the Console window, use
                     // TODO dyamically pull bearer token from app.config
-                    wc.Headers.Add("Authorization", "Bearer BQAo6EZjqlvaZ-IhQ8teorO6LwcSgEB0GJ5lyjRymPBFdcvLWMKNXm26htnpuogrK-3rF6oywhVjs5o_qP0");
+                    wc.Headers.Add("Authorization", "Bearer" + accessToken);
                     var json = wc.DownloadString(requestUrl);
                     JObject deserializedResponse = JObject.Parse(json);
 

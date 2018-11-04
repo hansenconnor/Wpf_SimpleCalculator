@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -37,10 +39,18 @@ namespace Wpf_SimpleCalculator
             // Define our data service
             JSONDataService jsonDataService = new JSONDataService();
 
+            // Get the access token
             string accessToken = jsonDataService.getAccessToken();
 
-                // 64 encoded auth
+            // Store token in app config
+            ConfigurationManager.AppSettings.Set("ACCESS_TOKEN", accessToken);
+            // 64 encoded auth
             //YWE0ZjZiZDIyYjc3NGFiMzk2ODI1NzQ5NzNjYjIyNWY6MzhiODYwMDhmOGJkNDhkNDkzYjMzZDI1NTA0NmQzNzk=
+
+            // close window and show main
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+            this.Close();
         }
     }
 }
