@@ -56,5 +56,10 @@ namespace Wpf_SimpleCalculator
             // Append the results to the search bar
 
         }
+
+        private void getReccommendationsButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
