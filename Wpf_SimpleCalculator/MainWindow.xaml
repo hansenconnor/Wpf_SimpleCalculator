@@ -11,7 +11,7 @@
         TextElement.FontSize="13"
         TextOptions.TextFormattingMode="Ideal" 
         TextOptions.TextRenderingMode="Auto"
-        Title="Calculator Window" Height="579.482" Width="512.586">
+        Title="Calculator Window" Height="707.482" Width="512.586">
 
     <Window.Background>
         <LinearGradientBrush EndPoint="516.793,579.482" StartPoint="516.793,0" MappingMode="Absolute">
@@ -31,13 +31,18 @@
         <TextBox x:Name="searchBox" HorizontalAlignment="Left" Height="30" Margin="84,160,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="269" Cursor="IBeam" BorderBrush="White"/>
         <Button x:Name="searchButton" Content="Add Artist" HorizontalAlignment="Left" Margin="353,160,0,0" VerticalAlignment="Top" Width="74" BorderBrush="White" Foreground="#DDFFFFFF" Height="30" Click="getArtists" BorderThickness="1" Background="{x:Null}" Style="{DynamicResource MaterialDesignFlatButton}">
         </Button>
-        <Label Content="BeatFinder" FontFamily="Agency FB" FontSize="48" Foreground="White" HorizontalAlignment="Center" Margin="136,50,135.5,446"/>
-        <Slider x:Name="danceabilitySlider" HorizontalAlignment="Left" VerticalAlignment="Top" Height="18" Width="201" Margin="79,233,0,0" Maximum="1" Value="0.5"/>
-        <Label x:Name="danceabilityLabel" Content="Danceability" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="304,224,0,0" Foreground="White"/>
-        <Slider x:Name="slider" HorizontalAlignment="Left" Margin="79,284,0,0" VerticalAlignment="Top" Height="20" Width="201" Maximum="1" Value="0.5"/>
-        <Label x:Name="energyLabel" Content="Energy" HorizontalAlignment="Left" Margin="304,276,0,0" VerticalAlignment="Top" Foreground="White"/>
-        <Slider x:Name="slider1" HorizontalAlignment="Left" Margin="79,335,0,0" VerticalAlignment="Top" Width="201" Value="50" Maximum="100"/>
-        <Label x:Name="popularityLabel" Content="Popularity" HorizontalAlignment="Left" Margin="304,326,0,0" VerticalAlignment="Top" Foreground="White"/>
-        <Button x:Name="getReccommendationsButton" Content="Find Reccommendations" HorizontalAlignment="Left" Margin="84,417,0,0" VerticalAlignment="Top" Width="343" Height="41" Background="#3FFFFFFF" Foreground="White" BorderBrush="White" Click="getReccommendationsButton_Click"/>
+        <Label Content="BeatFinder" FontFamily="Agency FB" FontSize="48" Foreground="White" HorizontalAlignment="Center" Margin="136,50,135.5,572"/>
+        <Slider x:Name="danceabilitySlider" HorizontalAlignment="Left" VerticalAlignment="Top" Height="18" Width="201" Margin="128,285,0,0" Maximum="1" Value="0.5"/>
+        <Label x:Name="danceabilityLabel" Content="Danceability" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="353,276,0,0" Foreground="White"/>
+        <Slider x:Name="energySlider" HorizontalAlignment="Left" Margin="128,336,0,0" VerticalAlignment="Top" Height="20" Width="201" Maximum="1" Value="0.5"/>
+        <Label x:Name="energyLabel" Content="Energy" HorizontalAlignment="Left" Margin="353,328,0,0" VerticalAlignment="Top" Foreground="White"/>
+        <Slider x:Name="popularitySlider" HorizontalAlignment="Left" Margin="128,387,0,0" VerticalAlignment="Top" Width="201" Value="50" Maximum="100"/>
+        <Label x:Name="popularityLabel" Content="Popularity" HorizontalAlignment="Left" Margin="353,378,0,0" VerticalAlignment="Top" Foreground="White"/>
+        <Button x:Name="getReccommendationsButton" Content="Find Reccommendations" HorizontalAlignment="Left" Margin="84,513,0,0" VerticalAlignment="Top" Width="343" Height="41" Background="#3FFFFFFF" Foreground="White" BorderBrush="White" Click="getReccommendationsButton_Click"/>
+        <ScrollViewer HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Auto" Margin="84,195,80.5,409">
+            <StackPanel x:Name="seedStackPanel" VerticalAlignment="Top" HorizontalAlignment="Left" Width="343"/>
+        </ScrollViewer>
+        <Slider x:Name="resultLimitSlider" HorizontalAlignment="Left" Margin="128,432,0,0" VerticalAlignment="Top" Width="201" Maximum="100" Minimum="1" SmallChange="1" Value="20"/>
+        <Label x:Name="resultLimitLabel" Content="Result Limit" HorizontalAlignment="Left" Margin="353,427,0,0" VerticalAlignment="Top" Foreground="White"/>
     </Grid>
 </Window>

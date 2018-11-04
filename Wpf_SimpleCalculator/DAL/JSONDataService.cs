@@ -31,10 +31,20 @@ namespace Wpf_SimpleCalculator.DAL
         }
 
 
+        public dynamic getRecommendations(List<string> artistSeeds, string danceability, string energy, string popularity, string resultLimit)
+        {
+            string joined = string.Join(",", artistSeeds);
+
+            string requestUrl = string.Format("https://api.spofity.com/v1/recommendations?seed_artists={0}&danceability={1}&energy={2}&popularity={3}&limit={4}", joined, danceability, energy, popularity, resultLimit);
+
+            JObject response = GetJsonResponse(requestUrl);
+
+            return response;
+        }
+
+
         public string getAccessToken()
         {
-            
-            
             string requestUrl = "https://accounts.spotify.com/api/token";
 
             using (WebClient wc = new WebClient())
