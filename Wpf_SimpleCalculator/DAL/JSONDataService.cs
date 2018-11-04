@@ -80,7 +80,8 @@ namespace Wpf_SimpleCalculator.DAL
                     // TODO: Makeu sure key value is not NULL
                     //To display the value that the application retrieves in the Console window, use
                     // TODO dyamically pull bearer token from app.config
-                    wc.Headers.Add("Authorization", "Bearer" + accessToken);
+                    string authValue = "Bearer" + " " + accessToken;
+                    wc.Headers.Add("Authorization", authValue);
                     var json = wc.DownloadString(requestUrl);
                     JObject deserializedResponse = JObject.Parse(json);
 
