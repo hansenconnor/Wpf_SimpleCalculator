@@ -97,8 +97,38 @@ namespace Wpf_SimpleCalculator
 
             JSONDataService dataService = new JSONDataService();
 
+
+            List <TrackRecommendation> trackRecommendations = new List<TrackRecommendation>();
             // Call results windows containing reccommendations
             JObject recommendationsObject = dataService.getRecommendations(artistSeeds, danceability, energy, popularity, resultLimit);
+
+
+            foreach (var recommendationObject in recommendationsObject["tracks"])
+            {
+                TrackRecommendation trackRecommendation = new TrackRecommendation();
+                string asdf = (string)recommendationObject["artists"][0]["name"];
+
+                //string test = (string)recommendationObject.SelectToken("artists.name");
+
+                foreach (var artist in recommendationObject["artists"])
+                {
+                    string artistName = "";
+                    artistName = artist["name"].ToString();
+                    Console.WriteLine();
+                    trackRecommendation.artists = new List<string>();
+                    trackRecommendation.artists.Add(artistName);
+                    trackRecommendation.artists.Add(artist["name"].ToString());
+                    Console.WriteLine(artist["name"].ToString());
+                    //trackRecommendation.artists.Add(artist["name"].ToString());
+                    Console.WriteLine(artist["name"].ToString());
+                }
+            }
+            
+
+
+
+            //string artistName = (string)recommendationsObject["artists"][0]["name"];
+            //string artistId = (string)recommendationsObject["artists"]["items"][0]["id"];
 
             Console.WriteLine();
         }

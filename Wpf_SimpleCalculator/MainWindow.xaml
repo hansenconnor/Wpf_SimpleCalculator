@@ -42,7 +42,7 @@
         <ScrollViewer HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Auto" Margin="84,195,80.5,409">
             <StackPanel x:Name="seedStackPanel" VerticalAlignment="Top" HorizontalAlignment="Left" Width="343"/>
         </ScrollViewer>
-        <Slider x:Name="resultLimitSlider" HorizontalAlignment="Left" Margin="128,432,0,0" VerticalAlignment="Top" Width="201" Maximum="100" Minimum="1" SmallChange="1" Value="20"/>
+        <Slider x:Name="resultLimitSlider" HorizontalAlignment="Left" Margin="128,432,0,0" VerticalAlignment="Top" Width="201" Maximum="100" Minimum="1" SmallChange="1" Value="20" IsSnapToTickEnabled="True"/>
         <Label x:Name="resultLimitLabel" Content="Result Limit" HorizontalAlignment="Left" Margin="353,427,0,0" VerticalAlignment="Top" Foreground="White"/>
     </Grid>
 </Window>

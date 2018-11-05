@@ -35,7 +35,7 @@ namespace Wpf_SimpleCalculator.DAL
         {
             string joined = string.Join(",", artistSeeds);
 
-            string requestUrl = string.Format("https://api.spofity.com/v1/recommendations?seed_artists={0}&danceability={1}&energy={2}&popularity={3}&limit={4}", joined, danceability, energy, popularity, resultLimit);
+            string requestUrl = string.Format("https://api.spotify.com/v1/recommendations?seed_artists={0}&danceability={1}&energy={2}&popularity={3}&limit={4}", joined, danceability, energy, popularity, resultLimit);
 
             JObject response = GetJsonResponse(requestUrl);
 
@@ -82,6 +82,7 @@ namespace Wpf_SimpleCalculator.DAL
 
         public static JObject GetJsonResponse(string requestUrl)
         {
+             //https://api.spotify.com/v1/recommendations?seed_artists=4NHQUGzhtTLFvgF5SZesLK&seed_tracks=0c6xIDDpzE81m2q797ordA&min_energy=0.4&min_popularity=50&market=US
             try
             {
                 using (WebClient wc = new WebClient())

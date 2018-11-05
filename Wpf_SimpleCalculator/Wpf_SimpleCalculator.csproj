@@ -111,6 +111,7 @@
   <ItemGroup>
     <Compile Include="Models\Artist.cs" />
     <Compile Include="Models\ItemType.cs" />
+    <Compile Include="Models\TrackRecommendation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
