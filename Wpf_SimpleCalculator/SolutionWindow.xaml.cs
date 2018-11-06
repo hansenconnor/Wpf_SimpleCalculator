@@ -79,6 +79,8 @@ namespace Wpf_SimpleCalculator
                 // Create new XAML layout
                 // resultsPanel.Children.Add(artists);
 
+
+
                 // Add data to layout
                 string albumImageUrl = recommendation.images.First();
                 string stringPath = albumImageUrl;
@@ -163,7 +165,7 @@ namespace Wpf_SimpleCalculator
             // Add artist links
             Grid.SetColumn(artistTextblock, 2);
             Grid.SetColumnSpan(artistTextblock, 1);
-            Grid.SetRow(artistTextblock, 1);
+            Grid.SetRow(artistTextblock, 2);
             Grid.SetRowSpan(artistTextblock, 1);
 
             myGrid.Children.Add(albumImage);

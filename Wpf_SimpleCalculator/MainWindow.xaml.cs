@@ -60,9 +60,17 @@ namespace Wpf_SimpleCalculator
             List<Artist> artists = artistBLL.GetArtists( searchQuery, type, limit );
 
             // Add artist(s) ID to public list for use in reccommendation search
+            if (artists == null)
+            {
+                MessageBox.Show("Not found!");
+                return;
+            }
             foreach (Artist artist in artists)
             {
-                artistSeeds.Add(artist.id);
+                if (artist != null)
+                {
+                    artistSeeds.Add(artist.id);
+                }
             }
 
             //Append the results to the search bar
