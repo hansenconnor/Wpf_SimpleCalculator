@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -50,18 +51,28 @@ namespace Wpf_SimpleCalculator
             foreach (var recommendation in recommendations)
             {
                 List<Hyperlink> artistLinks = new List<Hyperlink>();
+                TextBlock artistTextblock = new TextBlock();
+                
 
                 foreach (var artist in recommendation.artists)
                 {
                     // Create the artist link
                     Run artistName = new Run(artist[0, 0]);
                     Hyperlink artistLink = new Hyperlink(artistName);
+
+                    artistLink.Inlines.Add(artistName);
+                    artistTextblock.Inlines.Add(artistLink);
                     artistLink.NavigateUri = new Uri(artist[0, 1]);
-                    artistLinks.Add(artistLink);
+                    artistLink.Click += new RoutedEventHandler(handleLinkClick);
                 }
 
-                Paragraph artists = new Paragraph();
-                artists.Inlines.Add(artistLinks.ToString());
+                // Paragraph to hold artists
+               Paragraph artists = new Paragraph();
+
+                // Join list of artistLinks and separate with commas
+                string result = string.Join( ",", artistLinks );
+                
+                artists.Inlines.Add(result);
 
                 // Format the list of artist links with comma delimeter
 
@@ -74,11 +85,22 @@ namespace Wpf_SimpleCalculator
                 Uri imageUri = new Uri(stringPath, UriKind.Absolute);
                 BitmapImage albumImageBitmap = new BitmapImage(imageUri);
 
-                CreateRecommendationLayout(albumImageBitmap);
+                CreateRecommendationLayout(albumImageBitmap, artistTextblock);
             }
         }
 
-        private void CreateRecommendationLayout(BitmapImage albumImageBitmap)
+        private void handleLinkClick(object sender, RoutedEventArgs e)
+        {
+            Hyperlink hl = (Hyperlink)sender;
+
+            string navigateUri = hl.NavigateUri.ToString();
+
+            Process.Start(new ProcessStartInfo(navigateUri));
+
+            e.Handled = true;
+        }
+
+        private void CreateRecommendationLayout( BitmapImage albumImageBitmap, TextBlock artistTextblock )
         {
             // Create grid to hold recommendations
             Grid myGrid = new Grid();
@@ -104,13 +126,13 @@ namespace Wpf_SimpleCalculator
             myDropShadowEffect.Direction = 320;
 
             // Set the depth of the shadow being cast.
-            myDropShadowEffect.ShadowDepth = 25;
+            myDropShadowEffect.ShadowDepth = 5;
 
             // Set the shadow softness to the maximum (range of 0-1).
-
+            myDropShadowEffect.BlurRadius = 10;
             // Set the shadow opacity to half opaque or in other words - half transparent.
             // The range is 0-1.
-            myDropShadowEffect.Opacity = 0.5;
+            myDropShadowEffect.Opacity = 0.2;
 
             myBorder.Effect = myDropShadowEffect;
             myGrid.Effect = myDropShadowEffect;
@@ -138,7 +160,14 @@ namespace Wpf_SimpleCalculator
             Grid.SetColumnSpan(albumImage, 1);
             Grid.SetRowSpan(albumImage, 2);
 
+            // Add artist links
+            Grid.SetColumn(artistTextblock, 2);
+            Grid.SetColumnSpan(artistTextblock, 1);
+            Grid.SetRow(artistTextblock, 1);
+            Grid.SetRowSpan(artistTextblock, 1);
+
             myGrid.Children.Add(albumImage);
+            myGrid.Children.Add(artistTextblock);
             myGrid.Children.Add(myBorder);
             resultsPanel.Children.Add(myGrid);
             Console.WriteLine();
