@@ -152,12 +152,13 @@ namespace Wpf_SimpleCalculator
                     trackRecommendations.Add(trackRecommendation);
                 }
 
-                // Display results window
-
+                // Add track recommendation to the list of track recommendations
+                trackRecommendations.Add(trackRecommendation);
             }
-            
 
-
+            // Display the results window
+            Window solutionWindow = new SolutionWindow(trackRecommendations);
+            solutionWindow.Show();
 
             //string artistName = (string)recommendationsObject["artists"][0]["name"];
             //string artistId = (string)recommendationsObject["artists"]["items"][0]["id"];
