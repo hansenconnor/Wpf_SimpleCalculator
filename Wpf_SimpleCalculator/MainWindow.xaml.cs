@@ -99,29 +99,61 @@ namespace Wpf_SimpleCalculator
 
 
             List <TrackRecommendation> trackRecommendations = new List<TrackRecommendation>();
+
+
             // Call results windows containing reccommendations
             JObject recommendationsObject = dataService.getRecommendations(artistSeeds, danceability, energy, popularity, resultLimit);
-
 
             foreach (var recommendationObject in recommendationsObject["tracks"])
             {
                 TrackRecommendation trackRecommendation = new TrackRecommendation();
-                string asdf = (string)recommendationObject["artists"][0]["name"];
 
-                //string test = (string)recommendationObject.SelectToken("artists.name");
+                // Get track name and link
+                string trackName = recommendationObject["name"].ToString();
+                string trackLink = recommendationObject["external_urls"]["spotify"].ToString();
+                trackRecommendation.track = new string[,]
+                {
+                    {trackName, trackLink } // Add the track name and link to the list of recommendations
+                };
 
+                // Get album name and link
+                string albumName = recommendationObject["album"]["name"].ToString();
+                string albumLink = recommendationObject["album"]["external_urls"]["spotify"].ToString();
+                trackRecommendation.album = new string[,]
+                {
+                    {albumName, albumLink } // Add the album name and link to the list of recommendations
+                };
+
+                // Get the album images
+                trackRecommendation.images = new List<string>();
+                foreach (var image in recommendationObject["album"]["images"])
+                {
+                    string imageUrl = image["url"].ToString();
+                    trackRecommendation.images.Add(imageUrl); // Add the image urls to the list of recommendations
+                }
+
+                // Get the artists featured on the track
                 foreach (var artist in recommendationObject["artists"])
                 {
                     string artistName = "";
+                    string artistLink = "";
+
                     artistName = artist["name"].ToString();
-                    Console.WriteLine();
-                    trackRecommendation.artists = new List<string>();
-                    trackRecommendation.artists.Add(artistName);
-                    trackRecommendation.artists.Add(artist["name"].ToString());
-                    Console.WriteLine(artist["name"].ToString());
-                    //trackRecommendation.artists.Add(artist["name"].ToString());
-                    Console.WriteLine(artist["name"].ToString());
+                    artistLink = artist["external_urls"]["spotify"].ToString();
+
+                    string[,] artistNameAndLink = new string[,] { 
+                        { artistName, artistLink }
+                    };
+
+                    trackRecommendation.artists = new List<string[,]>();
+                    trackRecommendation.artists.Add(artistNameAndLink);
+
+                    // Add artist list to list of track recommendations
+                    trackRecommendations.Add(trackRecommendation);
                 }
+
+                // Display results window
+
             }
             
 

@@ -8,9 +8,9 @@ namespace Wpf_SimpleCalculator.Models
 {
     public class TrackRecommendation
     {
-        public List<string> artists { get; set; }
-        public string track { get; set; }
-        public string trackLink { get; set; }
+        public List<string[,]> artists { get; set; }
+        public string[,] album { get; set; }
+        public string[,] track { get; set; }
         public List<string> images { get; set; }
     }
 
