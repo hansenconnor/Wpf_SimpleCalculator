@@ -1,0 +1,17 @@
+﻿<Window x:Class="Wpf_SimpleCalculator.HelpWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Wpf_SimpleCalculator"
+        mc:Ignorable="d"
+        Title="HelpWindow" Height="500" Width="500" Topmost="True" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Button x:Name="helpButtonOk" Content="Ok" HorizontalAlignment="Left" VerticalAlignment="Top" Width="163" Margin="78,297,0,0" Click="helpButtonOk_Click"/>
+        <Label x:Name="label" Content="1. Enter an artist name in the search box and click Add." HorizontalAlignment="Center" VerticalAlignment="Top" Margin="77.807,134,77.807,0" Width="336.386" VerticalContentAlignment="Center" UseLayoutRounding="False"/>
+        <Label x:Name="label_Copy" Content="2. (optional) Repeat step 1 to add more artists." HorizontalAlignment="Center" VerticalAlignment="Top" Margin="78,165,117,0" Width="297" VerticalContentAlignment="Center"/>
+        <Label x:Name="label_Copy1" Content="3. Adjust the sliders to refine your search." HorizontalAlignment="Center" VerticalAlignment="Top" Margin="78,196,174,0" Width="240" VerticalContentAlignment="Center"/>
+        <Label x:Name="label_Copy2" Content="4. Click 'Find Recommendations'" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="78,227,174,0" Width="240" VerticalContentAlignment="Center"/>
+
+    </Grid>
+</Window>

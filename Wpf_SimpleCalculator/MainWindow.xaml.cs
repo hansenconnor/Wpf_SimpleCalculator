@@ -74,7 +74,7 @@ namespace Wpf_SimpleCalculator
             }
 
             //Append the results to the search bar
-            seedStackPanel.Children.Add(
+            seedStackPanel.Children.Insert(0,
                 new Label
                 {
                     Content = artists[0].name,
@@ -91,6 +91,13 @@ namespace Wpf_SimpleCalculator
         /// <param name="e"></param>
         private void getReccommendationsButton_Click(object sender, RoutedEventArgs e)
         {
+            // Return if artistSeeds is empty
+            if (artistSeeds == null || artistSeeds.Count() == 0)
+            {
+                MessageBox.Show("Please enter some artists!");
+                return;
+            }
+
             // Get artist seeds from the stack panel
             foreach (var artistId in artistSeeds)
             {
@@ -111,7 +118,10 @@ namespace Wpf_SimpleCalculator
 
             // Call results windows containing reccommendations
             JObject recommendationsObject = dataService.getRecommendations(artistSeeds, danceability, energy, popularity, resultLimit);
-
+            if (recommendationsObject == null)
+            {
+                MessageBox.Show("Something went wrong! Please clear your selection and try again.");
+            }
             foreach (var recommendationObject in recommendationsObject["tracks"])
             {
                 TrackRecommendation trackRecommendation = new TrackRecommendation();
@@ -172,6 +182,32 @@ namespace Wpf_SimpleCalculator
             //string artistId = (string)recommendationsObject["artists"]["items"][0]["id"];
 
             Console.WriteLine();
+        }
+
+
+        // Help button was clicked
+        private void helpLabel_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            // Display the help screen
+            Window helpWindow = new HelpWindow();
+            helpWindow.Show();
+        }
+
+        // Reset fields
+        private void getReccommendationsButton_Copy_Click(object sender, RoutedEventArgs e)
+        {
+            // Clear list of artist seeds
+            artistSeeds.Clear();
+
+            // Remove artist labels from seedBox
+            seedStackPanel.Children.Clear();
+
+            // Reset all form inputs
+            searchBox.Text = "";
+            danceabilitySlider.Value = 0.5;
+            energySlider.Value = 0.5;
+            popularitySlider.Value = 50;
+            resultLimitSlider.Value = 20;
         }
     }
 }
