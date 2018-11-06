@@ -9,6 +9,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Effects;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Wpf_SimpleCalculator.Models;
@@ -68,7 +69,7 @@ namespace Wpf_SimpleCalculator
                 // resultsPanel.Children.Add(artists);
 
                 // Add data to layout
-                string albumImageUrl = recommendation.images[0];
+                string albumImageUrl = recommendation.images.First();
                 string stringPath = albumImageUrl;
                 Uri imageUri = new Uri(stringPath, UriKind.Absolute);
                 BitmapImage albumImageBitmap = new BitmapImage(imageUri);
@@ -85,7 +86,39 @@ namespace Wpf_SimpleCalculator
             myGrid.Height = 100;
             myGrid.HorizontalAlignment = HorizontalAlignment.Left;
             myGrid.VerticalAlignment = VerticalAlignment.Top;
-            myGrid.ShowGridLines = true;
+            myGrid.ShowGridLines = false;
+            myGrid.Margin = new Thickness(0, 20, 0, 20);
+
+            var myBorder = new Border();
+
+            DropShadowEffect myDropShadowEffect = new DropShadowEffect();
+            // Set the color of the shadow to Black.
+            Color myShadowColor = new Color();
+            myShadowColor.ScA = 1;
+            myShadowColor.ScB = 0;
+            myShadowColor.ScG = 0;
+            myShadowColor.ScR = 0;
+            myDropShadowEffect.Color = myShadowColor;
+
+            // Set the direction of where the shadow is cast to 320 degrees.
+            myDropShadowEffect.Direction = 320;
+
+            // Set the depth of the shadow being cast.
+            myDropShadowEffect.ShadowDepth = 25;
+
+            // Set the shadow softness to the maximum (range of 0-1).
+
+            // Set the shadow opacity to half opaque or in other words - half transparent.
+            // The range is 0-1.
+            myDropShadowEffect.Opacity = 0.5;
+
+            myBorder.Effect = myDropShadowEffect;
+            myGrid.Effect = myDropShadowEffect;
+
+            Grid.SetColumnSpan(myBorder, 2);
+            Grid.SetRowSpan(myBorder, 2);
+
+
 
             // Define the Columns
             ColumnDefinition colDef1 = new ColumnDefinition();
@@ -105,15 +138,8 @@ namespace Wpf_SimpleCalculator
             Grid.SetColumnSpan(albumImage, 1);
             Grid.SetRowSpan(albumImage, 2);
 
-            // Add the first text cell to the Grid
-            TextBlock txt1 = new TextBlock();
-            txt1.Text = "2005 Products Shipped";
-            txt1.FontSize = 20;
-            txt1.FontWeight = FontWeights.Bold;
-            Grid.SetColumnSpan(txt1, 3);
-            Grid.SetRow(txt1, 0);
-
             myGrid.Children.Add(albumImage);
+            myGrid.Children.Add(myBorder);
             resultsPanel.Children.Add(myGrid);
             Console.WriteLine();
         }

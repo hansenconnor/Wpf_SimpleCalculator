@@ -149,7 +149,7 @@ namespace Wpf_SimpleCalculator
                     trackRecommendation.artists.Add(artistNameAndLink);
 
                     // Add artist list to list of track recommendations
-                    trackRecommendations.Add(trackRecommendation);
+                    //trackRecommendations.Add(trackRecommendation);
                 }
 
                 // Add track recommendation to the list of track recommendations

@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Wpf_SimpleCalculator"
         mc:Ignorable="d"
-        Title="SolutionWindow" Height="500" Width="300">
+        Title="SolutionWindow" Height="500" Width="745">
     <Grid>
         <ScrollViewer HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Auto" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <StackPanel x:Name="resultsPanel" HorizontalAlignment="Center" VerticalAlignment="Center" Width="250"/>
+            <StackPanel x:Name="resultsPanel" HorizontalAlignment="Center" VerticalAlignment="Center" Width="660"/>
         </ScrollViewer>
     </Grid>
 </Window>
